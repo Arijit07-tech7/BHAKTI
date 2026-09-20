@@ -1,12 +1,13 @@
 {
   "scripts": {
     "dev": "vite",
-    "build": "npx vite build",
-    "preview": "npx vite preview"
+    "build": "echo \"No build required\"",
+    "start": "serve -s . -l 10000"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
-    "@supabase/supabase-js": "^2.116.0"
+    "@supabase/supabase-js": "^2.116.0",
+    "serve": "^14.2.5"
   },
   "devDependencies": {
     "vite": "^8.3.0"
