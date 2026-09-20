@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <title>BHAKTI — Shakti Humanities Lab</title>
+
+  <meta
+    name="description"
+    content="BHAKTI — A premium script submission experience for Shakti Humanities Lab."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       GLOBAL ATMOSPHERE
+  ====================================================== -->
+
+  <div class="ambient-light ambient-one"></div>
+  <div class="ambient-light ambient-two"></div>
+
+  <div class="petal-layer" id="petalLayer"></div>
+
+  <!-- =====================================================
+       CINEMATIC BHAKTI SPLASH
+  ====================================================== -->
+
+  <section id="splashScreen" class="splash-screen">
+
+    <div class="splash-sun"></div>
+
+    <div class="splash-rays">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- soft smoke -->
+    <div class="smoke smoke-one"></div>
+    <div class="smoke smoke-two"></div>
+    <div class="smoke smoke-three"></div>
+
+    <!-- dhunuchi -->
+    <div class="dhunuchi">
+      <div class="dhuno-glow"></div>
+      <div class="dhuno-smoke"></div>
+
+      <div class="dhuno-bowl">
+        <div class="dhuno-inner"></div>
+      </div>
+
+      <div class="dhuno-stem"></div>
+      <div class="dhuno-base"></div>
+    </div>
+
+    <!-- diya -->
+    <div class="splash-diya">
+
+      <div class="diya-aura"></div>
+
+      <div class="flame">
+        <span class="flame-inner"></span>
+      </div>
+
+      <div class="diya-bowl">
+        <div class="diya-oil"></div>
+      </div>
+
+      <div class="diya-base"></div>
+    </div>
+
+    <!-- shankha -->
+    <div class="shankha">
+      <div class="shankha-shell">
+        <span></span>
+        <i></i>
+        <b></b>
+      </div>
+
+      <div class="shankha-ring ring-one"></div>
+      <div class="shankha-ring ring-two"></div>
+      <div class="shankha-ring ring-three"></div>
+    </div>
+
+    <!-- kash grass -->
+    <div class="kash-field left-kash">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="kash-field right-kash">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- falling sheuli -->
+    <div class="sheuli-field">
+      <span>✿</span>
+      <span>✿</span>
+      <span>✿</span>
+      <span>✿</span>
+      <span>✿</span>
+      <span>✿</span>
+      <span>✿</span>
+      <span>✿</span>
+    </div>
+
+    <!-- alpana -->
+    <div class="splash-alpana">
+      <svg viewBox="0 0 600 220" aria-hidden="true">
+        <path
+          d="M300 25
+             C270 55 270 85 300 105
+             C330 85 330 55 300 25
+             M300 105
+             C265 125 235 120 215 95
+             C205 125 220 150 255 158
+             C270 180 290 188 300 190
+             C310 188 330 180 345 158
+             C380 150 395 125 385 95
+             C365 120 335 125 300 105
+             M255 158
+             C230 170 205 165 190 145
+             M345 158
+             C370 170 395 165 410 145
+             M300 190
+             C270 198 245 192 225 177
+             M300 190
+             C330 198 355 192 375 177"
+        />
+      </svg>
+    </div>
+
+    <!-- splash content -->
+    <div class="splash-content">
+
+      <div class="splash-mantra">
+        ॥ जय माँ दुर्गा ॥
+      </div>
+
+      <div class="splash-small-line">
+        DEVOTION • EDUCATION • HUMANITY
+      </div>
+
+      <h1 class="splash-brand">
+        BHAKTI
+      </h1>
+
+      <div class="splash-tagline">
+        <span>Where Education Meets Bhakti,</span>
+        <span>Knowledge Finds Purpose,</span>
+        <strong>And Purpose Becomes Shakti.</strong>
+      </div>
+
+      <div class="splash-divider">
+        <span></span>
+        <b>✦</b>
+        <span></span>
+      </div>
+
+      <div class="splash-institution">
+        SHAKTI HUMANITIES LAB
+      </div>
+
+      <div class="splash-topic">
+        PUNJAB &amp; BENGAL
+        <small>The Pain of Partition</small>
+      </div>
+
+      <div class="splash-loading">
+        <div class="loading-line">
+          <span></span>
+        </div>
+        <small>ENTERING THE EXPERIENCE</small>
+      </div>
+
+    </div>
+
+    <div class="splash-bottom-glow"></div>
+
+  </section>
+
+
+  <!-- =====================================================
+       MAIN APPLICATION
+  ====================================================== -->
+
+  <div id="appShell" class="app-shell">
+
+    <!-- HEADER -->
+
+    <header class="site-header">
+
+      <div class="header-inner">
+
+        <button class="brand-button" data-view="home">
+
+          <div class="brand-symbol">
+            <span>ॐ</span>
+          </div>
+
+          <div class="brand-copy">
+            <strong>BHAKTI</strong>
+            <small>SHAKTI HUMANITIES LAB</small>
+          </div>
+
+        </button>
+
+
+        <nav class="navigation">
+
+          <button class="nav-link active" data-view="home">
+            <span>01</span>
+            Home
+          </button>
+
+          <button class="nav-link" data-view="submit">
+            <span>02</span>
+            Submit Script
+          </button>
+
+          <button class="nav-link" data-view="scripts">
+            <span>03</span>
+            View Scripts
+          </button>
+
+        </nav>
+
+
+        <button
+          id="mobileMenu"
+          class="mobile-menu"
+          aria-label="Open navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main>
+
+
+      <!-- ===================================================
+           HOME
+      ==================================================== -->
+
+      <section id="homeView" class="page-view active">
+
+        <!-- HERO -->
+
+        <div class="hero-section">
+
+          <div class="hero-background-alpana">
+            <svg viewBox="0 0 800 500">
+              <circle cx="400" cy="250" r="220"></circle>
+              <circle cx="400" cy="250" r="170"></circle>
+              <circle cx="400" cy="250" r="110"></circle>
+              <path d="M400 40 C350 130 350 370 400 460" />
+              <path d="M400 40 C450 130 450 370 400 460" />
+            </svg>
+          </div>
+
+
+          <div class="hero-copy">
+
+            <div class="eyebrow reveal">
+              <span class="eyebrow-dot"></span>
+              ACADEMIC SCRIPT EXPERIENCE
+            </div>
+
+            <h1 class="hero-title reveal delay-one">
+              Stories are not<br />
+              <em>just presented.</em>
+            </h1>
+
+            <p class="hero-description reveal delay-two">
+              They are remembered, understood, and carried forward
+              through the voices of those who tell them.
+            </p>
+
+
+            <div class="hero-topic reveal delay-three">
+
+              <span class="topic-label">
+                PRESENTATION
+              </span>
+
+              <strong>
+                Punjab &amp; Bengal
+              </strong>
+
+              <small>
+                The Pain of Partition through the Eyes of Commoners
+              </small>
+
+            </div>
+
+
+            <div class="hero-actions reveal delay-four">
+
+              <button class="primary-button" data-view="submit">
+                <span class="button-icon">✦</span>
+                Submit Your Script
+                <span class="button-arrow">→</span>
+              </button>
+
+              <button class="secondary-button" data-view="scripts">
+                Explore Scripts
+                <span>↗</span>
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- HERO VISUAL -->
+
+          <div class="hero-visual reveal delay-two">
+
+            <div class="hero-sun"></div>
+
+            <div class="hero-rings">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="hero-lotus">
+              <svg viewBox="0 0 400 300">
+
+                <path
+                  d="M200 255
+                     C140 235 90 190 95 130
+                     C150 140 185 180 200 225
+                     C215 180 250 140 305 130
+                     C310 190 260 235 200 255Z"
+                />
+
+                <path
+                  d="M200 245
+                     C170 195 165 130 200 70
+                     C235 130 230 195 200 245Z"
+                />
+
+                <path
+                  d="M200 245
+                     C120 220 65 175 60 115
+                     C120 115 175 155 200 225Z"
+                />
+
+                <path
+                  d="M200 245
+                     C280 220 335 175 340 115
+                     C280 115 225 155 200 225Z"
+                />
+
+              </svg>
+            </div>
+
+
+            <div class="hero-diya">
+
+              <div class="hero-flame">
+                <span></span>
+              </div>
+
+              <div class="hero-diya-body"></div>
+
+            </div>
+
+
+            <div class="hero-particle particle-a"></div>
+            <div class="hero-particle particle-b"></div>
+            <div class="hero-particle particle-c"></div>
+            <div class="hero-particle particle-d"></div>
+
+          </div>
+
+        </div>
+
+
+        <!-- VALUES -->
+
+        <div class="values-section">
+
+          <div class="section-heading">
+
+            <div>
+              <span class="section-kicker">THE EXPERIENCE</span>
+              <h2>One story.<br /><em>Many voices.</em></h2>
+            </div>
+
+            <p>
+              BHAKTI brings together the written voices of every member
+              of the presentation team in one shared academic space.
+            </p>
+
+          </div>
+
+
+          <div class="value-grid">
+
+            <article class="value-card">
+
+              <div class="value-number">01</div>
+
+              <div class="value-icon">🪔</div>
+
+              <h3>Write</h3>
+
+              <p>
+                Prepare your speaking script for your assigned slides.
+              </p>
+
+              <span class="card-line"></span>
+
+            </article>
+
+
+            <article class="value-card featured">
+
+              <div class="value-number">02</div>
+
+              <div class="value-icon">📜</div>
+
+              <h3>Submit</h3>
+
+              <p>
+                Save your script to the shared academic workspace.
+              </p>
+
+              <span class="card-line"></span>
+
+            </article>
+
+
+            <article class="value-card">
+
+              <div class="value-number">03</div>
+
+              <div class="value-icon">✦</div>
+
+              <h3>Remember</h3>
+
+              <p>
+                Read the voices and perspectives of the entire team.
+              </p>
+
+              <span class="card-line"></span>
+
+            </article>
+
+          </div>
+
+        </div>
+
+
+        <!-- TEAM -->
+
+        <div class="team-section">
+
+          <div class="section-heading centered">
+
+            <span class="section-kicker">THE PRESENTATION</span>
+
+            <h2>
+              Six voices.<br />
+              <em>One shared story.</em>
+            </h2>
+
+          </div>
+
+
+          <div class="team-strip">
+
+            <div class="team-item">
+              <span>01</span>
+              <strong>Introduction &amp; Historical Context</strong>
+              <small>Slides 1–7</small>
+            </div>
+
+            <div class="team-item">
+              <span>02</span>
+              <strong>Punjab &amp; Bengal</strong>
+              <small>Slides 8–16</small>
+            </div>
+
+            <div class="team-item">
+              <span>03</span>
+              <strong>Stories, Facts &amp; Figures</strong>
+              <small>Slides 17–23</small>
+            </div>
+
+            <div class="team-item">
+              <span>04</span>
+              <strong>Geography &amp; Human Impact</strong>
+              <small>Slides 24–28</small>
+            </div>
+
+            <div class="team-item">
+              <span>05</span>
+              <strong>Social Impact &amp; What Was Lost</strong>
+              <small>Slides 29–32</small>
+            </div>
+
+            <div class="team-item">
+              <span>06</span>
+              <strong>Rebuilding &amp; Conclusion</strong>
+              <small>Slides 33–35</small>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- CLOSING QUOTE -->
+
+        <div class="home-closing">
+
+          <div class="closing-diya">
+            <div class="mini-flame"></div>
+            <div class="mini-bowl"></div>
+          </div>
+
+          <p>
+            “Behind every boundary lies a human story.”
+          </p>
+
+          <span>
+            BHAKTI • SHAKTI HUMANITIES LAB
+          </span>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ===================================================
+           SUBMIT
+      ==================================================== -->
+
+      <section id="submitView" class="page-view">
+
+        <div class="page-intro">
+
+          <span class="section-kicker">
+            SCRIPT SUBMISSION
+          </span>
+
+          <h1>
+            Give your story<br />
+            <em>your own voice.</em>
+          </h1>
+
+          <p>
+            Enter your assigned member ID to open your writing space.
+          </p>
+
+        </div>
+
+
+        <div class="submission-layout">
+
+
+          <!-- ID CARD -->
+
+          <div class="id-panel">
+
+            <div class="panel-ornament">✦</div>
+
+            <span class="panel-kicker">
+              MEMBER ACCESS
+            </span>
+
+            <h2>
+              Enter your<br />
+              <em>Member ID</em>
+            </h2>
+
+            <p>
+              Your assigned name and slide range will appear
+              automatically after verification.
+            </p>
+
+
+            <form id="memberForm">
+
+              <label for="memberId">
+                MEMBER ID
+              </label>
+
+              <div class="input-wrap">
+
+                <span class="input-symbol">#</span>
+
+                <input
+                  id="memberId"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="SX-ARJ-01"
+                  maxlength="30"
+                  required
+                />
+
+                <span class="input-status"></span>
+
+              </div>
+
+              <button class="primary-button full-width" type="submit">
+                Open My Workspace
+                <span>→</span>
+              </button>
+
+            </form>
+
+
+            <div class="id-note">
+              <span>✦</span>
+              Use the ID assigned to you for the presentation.
+            </div>
+
+          </div>
+
+
+          <!-- EDITOR -->
+
+          <div class="editor-area">
+
+            <div id="memberDetails" class="member-details hidden"></div>
+
+
+            <div id="editorCard" class="editor-card hidden">
+
+              <div class="editor-header">
+
+                <div>
+
+                  <span class="section-kicker">
+                    YOUR WRITING SPACE
+                  </span>
+
+                  <h2 id="editorMemberName">
+                    Member
+                  </h2>
+
+                  <p id="editorSlides">
+                    Assigned Slides
+                  </p>
+
+                </div>
+
+                <div id="editorStatus" class="status-pill">
+                  READY
+                </div>
+
+              </div>
+
+
+              <div class="editor-meta">
+
+                <div>
+                  <span>SECTION</span>
+                  <strong id="editorSection">
+                    —
+                  </strong>
+                </div>
+
+                <div>
+                  <span>WORD COUNT</span>
+                  <strong id="wordCount">
+                    0
+                  </strong>
+                </div>
+
+                <div>
+                  <span>CHARACTERS</span>
+                  <strong id="charCount">
+                    0
+                  </strong>
+                </div>
+
+              </div>
+
+
+              <textarea
+                id="scriptEditor"
+                placeholder="Start writing your presentation script here...
+
+Speak naturally.
+Explain the story.
+Make every slide meaningful."
+              ></textarea>
+
+
+              <div class="editor-footer">
+
+                <span class="save-hint">
+                  Your script is saved to the shared workspace.
+                </span>
+
+                <button id="saveScriptBtn" class="primary-button">
+                  <span>✦</span>
+                  Save Script
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <div class="editor-empty">
+
+              <div class="empty-flower">✿</div>
+
+              <h3>
+                Your writing space awaits.
+              </h3>
+
+              <p>
+                Enter your member ID to unlock the editor.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ===================================================
+           SCRIPTS
+      ==================================================== -->
+
+      <section id="scriptsView" class="page-view">
+
+        <div class="page-intro scripts-intro">
+
+          <div>
+
+            <span class="section-kicker">
+              SHARED ARCHIVE
+            </span>
+
+            <h1>
+              The voices<br />
+              <em>of BHAKTI.</em>
+            </h1>
+
+            <p>
+              Explore the scripts submitted by the presentation team.
+            </p>
+
+          </div>
+
+
+          <button id="refreshScripts" class="secondary-button">
+            ↻ Refresh Scripts
+          </button>
+
+        </div>
+
+
+        <div id="scriptsGrid" class="scripts-grid">
+
+          <div class="loading-state">
+            <div class="loading-spinner"></div>
+            <span>Loading shared scripts...</span>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="site-footer">
+
+      <div class="footer-symbol">
+        ॐ
+      </div>
+
+      <div class="footer-main">
+
+        <strong>BHAKTI</strong>
+
+        <span>
+          SHAKTI HUMANITIES LAB
+        </span>
+
+      </div>
+
+      <p>
+        Education • Memory • Humanity
+      </p>
+
+      <small>
+        Punjab &amp; Bengal — The Pain of Partition
+      </small>
+
+    </footer>
+
+  </div>
+
+
+  <!-- =====================================================
+       TOAST
+  ====================================================== -->
+
+  <div id="toast" class="toast">
+
+    <div class="toast-icon">
+      ✦
+    </div>
+
+    <div>
+      <strong id="toastTitle">BHAKTI</strong>
+      <p id="toastMessage">Message</p>
+    </div>
+
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+</body>
+</html>
